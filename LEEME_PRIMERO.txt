@@ -1,0 +1,124 @@
+╔════════════════════════════════════════════════════════════════════╗
+║              SISTEMA LSM PROCESSOR - GUIA RAPIDA                   ║
+╔════════════════════════════════════════════════════════════════════╗
+
+📁 ARCHIVOS DEL PROYECTO (9 archivos):
+
+┌─ SCRIPTS EJECUTABLES ────────────────────────────────────────────┐
+│                                                                    │
+│  1. raspberry_recorder.py  → Grabador para Raspberry Pi (GPIO)    │
+│  2. keyboard_recorder.py   → Simulador de prueba (teclado)        │
+│  3. lsm_processor_csv.py   → Procesador de videos                 │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
+
+┌─ DOCUMENTACIÓN ──────────────────────────────────────────────────┐
+│                                                                    │
+│  1. INDEX.md               → Índice completo del proyecto         │
+│  2. README.md              → Manual de inicio rápido              │
+│  3. README_CSV_SYSTEM.md   → Manual completo del usuario          │
+│  4. MIGRATION_GUIDE.md     → Guía técnica para desarrolladores    │
+│  5. RESUMEN_CAMBIOS.md     → Resumen ejecutivo                    │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
+
+┌─ DATOS ──────────────────────────────────────────────────────────┐
+│                                                                    │
+│  1. origen_timestamps.csv  → Ejemplo con 6 señas                  │
+│                                                                    │
+└────────────────────────────────────────────────────────────────────┘
+
+════════════════════════════════════════════════════════════════════
+
+🚀 INICIO RÁPIDO:
+
+  1. Lee: INDEX.md (te guía a la documentación correcta)
+  2. Prueba: python keyboard_recorder.py prueba.mp4
+  3. Procesa: python lsm_processor_csv.py --input prueba.mp4
+
+════════════════════════════════════════════════════════════════════
+
+🎯 ¿QUÉ ARCHIVO LEER?
+
+  ┌──────────────────────┬─────────────────────────────────────┐
+  │ Si eres...           │ Lee primero...                      │
+  ├──────────────────────┼─────────────────────────────────────┤
+  │ Usuario nuevo        │ README.md                           │
+  │ Usuario avanzado     │ README_CSV_SYSTEM.md                │
+  │ Desarrollador        │ MIGRATION_GUIDE.md                  │
+  │ Supervisor/Jefe      │ RESUMEN_CAMBIOS.md                  │
+  │ Buscando algo        │ INDEX.md                            │
+  └──────────────────────┴─────────────────────────────────────┘
+
+════════════════════════════════════════════════════════════════════
+
+💡 SISTEMA CSV (NUEVO):
+
+  ✅ 100% confiable (no depende de audio)
+  ✅ Simple (timestamps en archivo CSV)
+  ✅ Editable (corregir manualmente)
+  ✅ Rápido (sin procesamiento FFT)
+
+  ❌ Sistema FSK (viejo) ELIMINADO:
+     - Problemas de decodificación (50% éxito)
+     - Dependencia de audio codificado
+     - Imposible corregir errores
+
+════════════════════════════════════════════════════════════════════
+
+📊 FLUJO DE TRABAJO:
+
+  Raspberry Pi:                PC:
+  ┌────────────────┐          ┌────────────────┐
+  │ 1. Grabar video│          │ 3. Procesar    │
+  │ 2. Presionar   │  ───→    │    video.mp4 + │
+  │    botones     │          │    CSV         │
+  │    (GPIO17)    │          │                │
+  └────────────────┘          └────────────────┘
+         │                            │
+         ↓                            ↓
+    video.mp4                    extraidos/
+    timestamps.csv               - c001.mp4
+                                 - c001.npy
+                                 - c002.mp4
+                                 - etc.
+
+════════════════════════════════════════════════════════════════════
+
+📞 COMANDOS ÚTILES:
+
+  # Probar sistema (PC):
+  python keyboard_recorder.py test.mp4
+
+  # Grabar en Raspberry Pi:
+  python3 raspberry_recorder.py video.mp4
+
+  # Procesar video:
+  python lsm_processor_csv.py --input video.mp4
+
+  # Ver ayuda:
+  python lsm_processor_csv.py --help
+
+════════════════════════════════════════════════════════════════════
+
+📝 FORMATO DEL CSV:
+
+  timestamp,event_type,sign_id
+  10.25,inicio_seña,1
+  14.00,inicio_seña,5
+  24.62,inicio_seña,7
+
+════════════════════════════════════════════════════════════════════
+
+🎓 MÁS INFORMACIÓN:
+
+  - Instalación y requisitos: README.md
+  - Configuración GPIO: README_CSV_SYSTEM.md
+  - Resolución de problemas: README.md
+  - Detalles técnicos: MIGRATION_GUIDE.md
+  - Índice completo: INDEX.md
+
+════════════════════════════════════════════════════════════════════
+
+Versión: 2.0 (Sistema CSV)
+Fecha: Noviembre 2025
